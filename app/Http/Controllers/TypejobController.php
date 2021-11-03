@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Sexe;
 use App\Models\Typejob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -40,7 +39,11 @@ class TypejobController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "libelle" => "required"
+            "libelle" => "required",
+            "nomjobtalend" => "required",
+            "commande" => "required",
+            "jobunique" => "required",
+            "estimport" => "required",
         ]);
 
         $typejob = Typejob::create([
@@ -62,13 +65,13 @@ class TypejobController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Sexe  $sexe
+     * @param  \App\Models\Typejob  $typejob
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $sexe = Sexe::find($id);
-        $data["sexe"] = $sexe;
+        $typejob = Typejob::find($id);
+        $data["typejob"] = $typejob;
 
         return view("parametrage.typejob.show", $data);
     }
@@ -76,13 +79,13 @@ class TypejobController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Sexe  $sexe
+     * @param  \App\Models\Typejob  $typejob
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $sexe = Sexe::find($id);
-        $data["sexe"] = $sexe;
+        $typejob = Typejob::find($id);
+        $data["typejob"] = $typejob;
 
         return view("parametrage.typejob.edit", $data);
     }
@@ -91,21 +94,29 @@ class TypejobController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Sexe  $sexe
+     * @param  \App\Models\Typejob  $typejob
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $request->validate([
-            "libelle" => "required"
+            "libelle" => $request->libelle,
+            "nomjobtalend" => $request->nomjobtalend,
+            "commande" => $request->commande,
+            "jobunique" => $request->jobunique,
+            "estimport" => $request->estimport,
         ]);
 
-        $sexe = Sexe::find($id);
-        $sexe->update([
-            "libelle" => $request->libelle
+        $typejob = Typejob::find($id);
+        $typejob->update([
+            "libelle" => $request->libelle,
+            "nomjobtalend" => $request->nomjobtalend,
+            "commande" => $request->commande,
+            "jobunique" => $request->jobunique,
+            "estimport" => $request->estimport,
         ]);
 
-        self::updateDefault($sexe);
+        self::updateDefault($typejob);
 
         Session::flash("alert-success", "Modification effectuée avec succès!");
 
@@ -114,20 +125,20 @@ class TypejobController extends Controller
 
     public function statut($id)
     {
-        $sexe = Sexe::find($id);
+        $typejob = Typejob::find($id);
 
-        if($sexe->active == 1)
+        if($typejob->active == 1)
         {
-            $sexe->active = 0;
+            $typejob->active = 0;
         }
         else
         {
-            $sexe->active = 1;
+            $typejob->active = 1;
         }
 
-        self::updateDefault($sexe);
+        self::updateDefault($typejob);
 
-        $sexe->save();
+        $typejob->save();
 
         return redirect()->route("typejob.index");
     }
@@ -135,10 +146,10 @@ class TypejobController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Sexe  $sexe
+     * @param  \App\Models\Typejob  $typejob
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Sexe $sexe)
+    public function destroy(Typejob $typejob)
     {
         //
     }
