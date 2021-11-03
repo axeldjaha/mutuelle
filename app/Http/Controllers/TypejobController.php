@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Sexe;
+use App\Models\Typejob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
-class SexeController extends Controller
+class TypejobController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +16,9 @@ class SexeController extends Controller
      */
     public function index()
     {
-        $data["sexes"] = Sexe::orderBy("libelle", "asc")->get();
+        $data["types"] = Typejob::orderBy("libelle", "asc")->get();
 
-        return view("parametrage.sexe.index", $data);
+        return view("parametrage.typejob.index", $data);
     }
 
     /**
@@ -27,7 +28,7 @@ class SexeController extends Controller
      */
     public function create()
     {
-        return view("parametrage.sexe.create");
+        return view("parametrage.typejob.create");
     }
 
     /**
@@ -42,16 +43,20 @@ class SexeController extends Controller
             "libelle" => "required"
         ]);
 
-        $sexe = Sexe::create([
-            "libelle" => $request->libelle
+        $typejob = Typejob::create([
+            "libelle" => $request->libelle,
+            "nomjobtalend" => $request->nomjobtalend,
+            "commande" => $request->commande,
+            "jobunique" => $request->jobunique,
+            "estimport" => $request->estimport,
         ]);
 
-        self::storeDefault($sexe);
+        self::storeDefault($typejob);
 
         Session::flash("type", "alert-success");
         Session::flash("message", "Enregistrement effectué avec succès!");
 
-        return redirect()->route("sexe.index");
+        return redirect()->route("typejob.index");
     }
 
     /**
@@ -65,7 +70,7 @@ class SexeController extends Controller
         $sexe = Sexe::find($id);
         $data["sexe"] = $sexe;
 
-        return view("parametrage.sexe.show", $data);
+        return view("parametrage.typejob.show", $data);
     }
 
     /**
@@ -79,7 +84,7 @@ class SexeController extends Controller
         $sexe = Sexe::find($id);
         $data["sexe"] = $sexe;
 
-        return view("parametrage.sexe.edit", $data);
+        return view("parametrage.typejob.edit", $data);
     }
 
     /**
@@ -102,10 +107,9 @@ class SexeController extends Controller
 
         self::updateDefault($sexe);
 
-        Session::flash("type", "alert-success");
-        Session::flash("message", "Modification effectuée avec succès!");
+        Session::flash("alert-success", "Modification effectuée avec succès!");
 
-        return redirect()->route("sexe.index");
+        return redirect()->route("typejob.index");
     }
 
     public function statut($id)
@@ -125,7 +129,7 @@ class SexeController extends Controller
 
         $sexe->save();
 
-        return redirect()->route("sexe.index");
+        return redirect()->route("typejob.index");
     }
 
     /**
