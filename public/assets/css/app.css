@@ -355,7 +355,9 @@ a {
 
 .breadcrumb-title {
 	font-size: 20px;
-	border-right: 1.5px solid #aaa4a4
+	border-left: 1.5px solid #aaa4a4;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .page-breadcrumb .breadcrumb li.breadcrumb-item {
@@ -808,7 +810,7 @@ a {
 	color: #32393f;
   }
 
-  
+
   .w_chart canvas {
 	position: absolute;
 	top: 0;
@@ -1723,11 +1725,11 @@ a {
 .text-facebook{
 	color: #3b5998!important
  }
- 
+
  .text-twitter{
 	 color: #55acee!important
   }
- 
+
   .text-youtube{
 	 color: #e52d27!important
   }
@@ -2599,4 +2601,45 @@ input.search-control-2::placeholder {
 	.chat-top-header-menu {
 		display: none
 	}
+}
+
+.fit{
+    white-space: nowrap; width: 1%;
+}
+.modal-header .close {
+    padding: 1rem 1rem;
+    margin: -1rem -1rem -1rem auto;
+}
+
+button.close {
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.close {
+    float: right;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    opacity: .5;
+}
+[type=button], [type=reset], [type=submit], button {
+    -webkit-appearance: button;
+}
+button, select {
+    text-transform: none;
+}
+button, input {
+    overflow: visible;
+}
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
 }

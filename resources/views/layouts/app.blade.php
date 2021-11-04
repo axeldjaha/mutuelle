@@ -6,26 +6,36 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
-	<link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
+	<link rel="icon" href="{{ asset("assets/images/favicon-32x32.png") }}" type="image/png" />
+
 	<!--plugins-->
+    <!--script src="assets/js/jquery.min.js"></script-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/popper.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+
+    <!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"-->
+
 	@yield("style")
-	<link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
-	<link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet" />
-	<link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet" />
+	<link href="{{ asset("assets/plugins/simplebar/css/simplebar.css") }}" rel="stylesheet" />
+	<link href="{{ asset("assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css") }}" rel="stylesheet" />
+	<link href="{{ asset("assets/plugins/metismenu/css/metisMenu.min.css") }}" rel="stylesheet" />
 	<!-- loader-->
-	<link href="assets/css/pace.min.css" rel="stylesheet" />
-	<script src="assets/js/pace.min.js"></script>
+	<link href="{{ asset("assets/css/pace.min.css") }}" rel="stylesheet" />
+	<script src="{{ asset("assets/js/pace.min.js") }}"></script>
 	<!-- Bootstrap CSS -->
-	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="{{ asset("assets/css/bootstrap.min.css") }}" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-	<link href="assets/css/app.css" rel="stylesheet">
-	<link href="assets/css/icons.css" rel="stylesheet">
+	<link href="{{ asset("assets/css/app.css") }}" rel="stylesheet">
+	<link href="{{ asset("assets/css/icons.css") }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Theme Style CSS -->
-    <link rel="stylesheet" href="assets/css/dark-theme.css" />
-    <link rel="stylesheet" href="assets/css/semi-dark.css" />
-    <link rel="stylesheet" href="assets/css/header-colors.css" />
-    <title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
+    <link rel="stylesheet" href="{{ asset("assets/css/dark-theme.css") }}" />
+    <link rel="stylesheet" href="{{ asset("assets/css/semi-dark.css") }}" />
+    <link rel="stylesheet" href="{{ asset("assets/css/header-colors.css") }}" />
+    <title>Mutuelle</title>
 </head>
 
 <body>
@@ -38,7 +48,28 @@
 		@include("layouts.nav")
 		<!--end navigation-->
 		<!--start page wrapper -->
-		@yield("wrapper")
+
+        <div class="page-wrapper">
+            <div class="page-content">
+                <!--breadcrumb-->
+                <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+
+                    <div class="" style="padding-right: 10px">
+                        <nav aria-label="breadcrumb">
+                            <ol class="breadcrumb mb-0 p-0">
+                                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                                </li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="breadcrumb-title pe-3">{{ $title ?? "Titre" }}</div>
+                </div>
+
+                @yield("wrapper")
+            </div>
+
+        </div>
+
 		<!--end page wrapper -->
 		<!--start overlay-->
 		<div class="overlay toggle-icon"></div>
@@ -147,14 +178,15 @@
     </div>
     <!--end switcher-->
 	<!-- Bootstrap JS -->
-	<script src="assets/js/bootstrap.bundle.min.js"></script>
+	<script src="{{ asset("assets/js/bootstrap.bundle.min.js") }}"></script>
 	<!--plugins-->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/plugins/simplebar/js/simplebar.min.js"></script>
-	<script src="assets/plugins/metismenu/js/metisMenu.min.js"></script>
-	<script src="assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+	<!--script src="assets/js/jquery.min.js"></script-->
+	<script src="{{ asset("assets/plugins/simplebar/js/simplebar.min.js") }}"></script>
+	<script src="{{ asset("assets/plugins/metismenu/js/metisMenu.min.js") }}"></script>
+	<script src="{{ asset("assets/plugins/perfect-scrollbar/js/perfect-scrollbar.js") }}"></script>
 	<!--app JS-->
-	<script src="assets/js/app.js"></script>
+	<script src="{{ asset("assets/js/app.js") }}"></script>
+	<script src="{{ asset("js/confirm.js") }}"></script>
 	@yield("script")
 </body>
 

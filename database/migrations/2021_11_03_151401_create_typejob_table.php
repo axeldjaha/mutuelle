@@ -16,10 +16,10 @@ class CreateTypejobTable extends Migration
         Schema::create('t_typejob', function (Blueprint $table) {
             $table->tinyIncrements("id");
             $table->string("libelle", 255);
-            $table->string("nomjobtalend", 255);
-            $table->string("commande", 255);
-            $table->tinyInteger("jobunique");
-            $table->tinyInteger("estimport");
+            $table->string("nomjobtalend", 255)->nullable();
+            $table->string("commande", 255)->nullable();
+            $table->tinyInteger("jobunique")->nullable();
+            $table->tinyInteger("estimport")->default(0);
 
             $table->tinyInteger("active")->default(1);
             $table->integer("version")->default(1);

@@ -1,42 +1,48 @@
 @extends("layouts.app")
 
-@section("content")
+@section("wrapper")
 
-    <table class="table table-hover table-responsive table-bordered">
-        <thead>
-        <th>Libellé</th>
-        <th>Actions</th>
-        </thead>
-        <tbody>
-        @foreach($sexes as $sexe)
-            <tr>
-                <td>{{ $sexe->libelle }}</td>
-                <td data-url="{{ route("sexe.statut", $sexe) }}">
-                    <a href="{{ route("sexe.show", $sexe) }}" class="mr-sm-2">Voir</a>
-                    <a href="{{ route("sexe.edit", $sexe) }}" class="mr-sm-2">Editer</a>
-                    @if($sexe->active == 1)
-                        <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary mr-sm-2"
-                        onclick="confirmAction(this)">
-                            Désactiver
-                        </button>
-                    @else
-                        <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-primary mr-sm-2"
-                                onclick="confirmAction(this)">
-                            Activer
-                        </button>
-                    @endif
-                </td>
-            </tr>
-        @endforeach
+    <h6 class="mb-0 text-uppercase">DataTable Import</h6>
+    <hr/>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table id="example2" class="table table-striped table-bordered dataTable">
+                    <thead>
+                    <tr>
+                        <th class="">Libelle</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($sexes as $sexe)
+                        <tr>
+                            <td>{{ $sexe->libelle }}</td>
+                            <td class="fit" data-url="{{ route("sexe.statut", $sexe) }}">
+                                <a href="{{ route("sexe.show", $sexe) }}" class="btn btn-secondary"><span class="fa fa-eye"></span></a>
+                                <a href="{{ route("sexe.edit", $sexe) }}" class="btn btn-primary"><span class="fa fa-pencil"></span></a>
+                                @if($sexe->active == 1)
+                                    <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-danger mr-sm-2"
+                                            onclick="confirmAction(this)">
+                                        Activer
+                                    </button>
+                                @else
+                                    <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-success mr-sm-2"
+                                            onclick="confirmAction(this)">
+                                        <span class="fa fa-check"></span>
+                                    </button>
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                    </tbody>
 
-        </tbody>
-    </table>
+                </table>
+            </div>
+        </div>
+    </div>
 
 
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Launch demo modal
-    </button>
 
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -68,3 +74,23 @@
 
 @endsection
 
+@section("script")
+    <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+    <script src="assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
+    <script>
+        $(document).ready(function() {
+            var table = $('#example2').DataTable( {
+                lengthChange: false,
+                buttons: [ 'excel', 'pdf']
+            } );
+
+            table.buttons().container()
+                .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
+        } );
+    </script>
+@endsection

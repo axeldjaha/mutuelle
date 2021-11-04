@@ -40,18 +40,10 @@ class TypejobController extends Controller
     {
         $request->validate([
             "libelle" => "required",
-            "nomjobtalend" => "required",
-            "commande" => "required",
-            "jobunique" => "required",
-            "estimport" => "required",
         ]);
 
         $typejob = Typejob::create([
             "libelle" => $request->libelle,
-            "nomjobtalend" => $request->nomjobtalend,
-            "commande" => $request->commande,
-            "jobunique" => $request->jobunique,
-            "estimport" => $request->estimport,
         ]);
 
         self::storeDefault($typejob);
@@ -100,29 +92,27 @@ class TypejobController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            "libelle" => $request->libelle,
-            "nomjobtalend" => $request->nomjobtalend,
-            "commande" => $request->commande,
-            "jobunique" => $request->jobunique,
-            "estimport" => $request->estimport,
+            "libelle" => "required",
         ]);
 
         $typejob = Typejob::find($id);
         $typejob->update([
             "libelle" => $request->libelle,
-            "nomjobtalend" => $request->nomjobtalend,
-            "commande" => $request->commande,
-            "jobunique" => $request->jobunique,
-            "estimport" => $request->estimport,
         ]);
 
         self::updateDefault($typejob);
 
-        Session::flash("alert-success", "Modification effectuée avec succès!");
+        Session::flash("type", "alert-success");
+        Session::flash("message", "Modification effectuée avec succès!");
 
         return redirect()->route("typejob.index");
     }
 
+    /**
+     * Activer / Désactiver un typejob
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function statut($id)
     {
         $typejob = Typejob::find($id);

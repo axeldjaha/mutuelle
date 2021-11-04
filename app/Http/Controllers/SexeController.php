@@ -15,6 +15,9 @@ class SexeController extends Controller
      */
     public function index()
     {
+        $data["title"] = "Sexe";
+        $data["menu"] = "Sexe";
+
         $data["sexes"] = Sexe::orderBy("libelle", "asc")->get();
 
         return view("parametrage.sexe.index", $data);
@@ -27,6 +30,9 @@ class SexeController extends Controller
      */
     public function create()
     {
+        $data["title"] = "Sexe";
+        $data["menu"] = "Sexe";
+
         return view("parametrage.sexe.create");
     }
 
@@ -62,6 +68,9 @@ class SexeController extends Controller
      */
     public function show($id)
     {
+        $data["title"] = "Sexe";
+        $data["menu"] = "Sexe";
+
         $sexe = Sexe::find($id);
         $data["sexe"] = $sexe;
 
@@ -76,6 +85,9 @@ class SexeController extends Controller
      */
     public function edit($id)
     {
+        $data["title"] = "Sexe";
+        $data["menu"] = "Sexe";
+
         $sexe = Sexe::find($id);
         $data["sexe"] = $sexe;
 
