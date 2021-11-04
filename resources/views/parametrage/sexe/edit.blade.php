@@ -1,4 +1,4 @@
-@extends("layouts.style-table")
+@extends("layouts.navigate")
 
 @section("table-wrapper")
 

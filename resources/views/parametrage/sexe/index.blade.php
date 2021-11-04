@@ -1,8 +1,8 @@
-@extends("layouts.style-table")
+@extends("layouts.navigate")
 
 @section("table-wrapper")
 
-    <h6 class="mb-0 text-uppercase">DataTable Import</h6>
+    <h6 class="mb-0 text-uppercase">Liste {{ $title }}</h6>
     <hr/>
     <div class="card">
         <div class="card-header">
