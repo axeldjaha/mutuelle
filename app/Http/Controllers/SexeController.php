@@ -33,7 +33,7 @@ class SexeController extends Controller
         $data["title"] = "Sexe";
         $data["menu"] = "Sexe";
 
-        return view("parametrage.sexe.create");
+        return view("parametrage.sexe.create", $data);
     }
 
     /**

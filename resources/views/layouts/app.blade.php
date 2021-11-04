@@ -6,12 +6,12 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!--favicon-->
-	<link rel="icon" href="{{ asset("assets/images/favicon-32x32.png") }}" type="image/png" />
+	<link rel="icon" href="assets/images/favicon-32x32.png" type="image/png" />
 
 	<!--plugins-->
     <!--script src="assets/js/jquery.min.js"></script-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/popper.js"></script>
+    <script src="https://unpkg.com/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
 
     <!--link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"-->
@@ -48,28 +48,7 @@
 		@include("layouts.nav")
 		<!--end navigation-->
 		<!--start page wrapper -->
-
-        <div class="page-wrapper">
-            <div class="page-content">
-                <!--breadcrumb-->
-                <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-
-                    <div class="" style="padding-right: 10px">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb mb-0 p-0">
-                                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
-                                </li>
-                            </ol>
-                        </nav>
-                    </div>
-                    <div class="breadcrumb-title pe-3">{{ $title ?? "Titre" }}</div>
-                </div>
-
-                @yield("wrapper")
-            </div>
-
-        </div>
-
+		@yield("wrapper")
 		<!--end page wrapper -->
 		<!--start overlay-->
 		<div class="overlay toggle-icon"></div>

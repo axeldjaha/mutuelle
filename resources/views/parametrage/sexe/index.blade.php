@@ -1,13 +1,18 @@
-@extends("layouts.app")
+@extends("layouts.style-table")
 
-@section("wrapper")
+@section("table-wrapper")
 
     <h6 class="mb-0 text-uppercase">DataTable Import</h6>
     <hr/>
     <div class="card">
+        <div class="card-header">
+            <div class="d-flex justify-content-end">
+                <a class="btn btn-primary" href="{{ route("sexe.create") }}">Ajouter</a>
+            </div>
+        </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table id="example2" class="table table-striped table-bordered dataTable">
+                <table id="example2" class="table table-striped table-bordered">
                     <thead>
                     <tr>
                         <th class="">Libelle</th>
@@ -16,7 +21,7 @@
                     </thead>
                     <tbody>
                     @foreach($sexes as $sexe)
-                        <tr>
+                        <tr style="color: @if($sexe->active == 1) lightgreen @else indianred @endif" >
                             <td>{{ $sexe->libelle }}</td>
                             <td class="fit" data-url="{{ route("sexe.statut", $sexe) }}">
                                 <a href="{{ route("sexe.show", $sexe) }}" class="btn btn-secondary"><span class="fa fa-eye"></span></a>
@@ -24,7 +29,7 @@
                                 @if($sexe->active == 1)
                                     <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-danger mr-sm-2"
                                             onclick="confirmAction(this)">
-                                        Activer
+                                        <span class="fa fa-ban"></span>
                                     </button>
                                 @else
                                     <button type="button" data-toggle="modal" data-target="#exampleModal" class="btn btn-success mr-sm-2"
@@ -74,23 +79,3 @@
 
 @endsection
 
-@section("script")
-    <script src="assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
-    <script src="assets/plugins/datatable/js/dataTables.bootstrap5.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable();
-        } );
-    </script>
-    <script>
-        $(document).ready(function() {
-            var table = $('#example2').DataTable( {
-                lengthChange: false,
-                buttons: [ 'excel', 'pdf']
-            } );
-
-            table.buttons().container()
-                .appendTo( '#example2_wrapper .col-md-6:eq(0)' );
-        } );
-    </script>
-@endsection

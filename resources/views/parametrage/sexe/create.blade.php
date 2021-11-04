@@ -1,6 +1,6 @@
-@extends("layouts.app")
+@extends("layouts.style-table")
 
-@section("wrapper")
+@section("table-wrapper")
 
     <div class="col-xl-9 mx-auto">
 
@@ -11,7 +11,8 @@
         <div class="card">
             <div class="card-body">
                 <div class="p-4 border rounded">
-                    <form class="row" action="{{ route("sexe.update", $sexe) }}" method="post">
+                    <form class="row" action="{{ route("sexe.store") }}" method="post">
+                        @csrf
                         <div class="col-sm-12">
                             <label for="libelle" class="form-label">Libellé</label>
                             <input type="text" id="libelle" name="libelle" class="form-control @error("libelle") is-invalid @enderror" required>

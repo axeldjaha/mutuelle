@@ -1,13 +1,32 @@
-@extends("layouts.app")
+@extends("layouts.style-table")
 
-@section("content")
+@section("table-wrapper")
 
-    <form>
-        @csrf
-        <label for="libelle">Sexe</label>
-        <input type="text" id="libelle" name="libelle" class="form-control" value="{{ $sexe->libelle }}" disabled>
+    <div class="col-xl-9 mx-auto">
 
-        <a href="{{ route("sexe.index") }}" class="btn btn-danger">Annuler</a>
-    </form>
+        <h6 class="mb-0 text-uppercase">Détail {{ $title }}</h6>
+
+        <hr>
+
+        <div class="card">
+            <div class="card-body">
+                <div class="p-4 border rounded">
+                    <form class="row">
+                        @csrf
+                        @method("put")
+                        <div class="col-sm-12">
+                            <label for="libelle" class="form-label">Libellé</label>
+                            <input disabled type="text" id="libelle" name="libelle" class="form-control @error("libelle") is-invalid @enderror" required value="{{ $sexe->libelle }}">
+                            @error("libelle") <div class="invalid-feedback">{{$message}}</div> @enderror
+                        </div>
+
+                        <div class="col-12 mt-3">
+                            <a href="{{ route("sexe.index") }}" class="btn btn-danger">Annuler</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection

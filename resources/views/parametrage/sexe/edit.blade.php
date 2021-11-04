@@ -1,6 +1,6 @@
-@extends("layouts.app")
+@extends("layouts.style-table")
 
-@section("wrapper")
+@section("table-wrapper")
 
     <div class="col-xl-9 mx-auto">
 
